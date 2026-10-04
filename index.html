@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <title>Lively Bubbles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                        inset 0 0 20px rgba(255, 255, 255, 0.4);
+            animation: rise linear infinite;
+        }
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            
+            // بلبلوں کا سائز اور پوزیشن خودکار سیٹ کرنے کے لیے
+            const size = Math.random() * 60 + 20 + 'px';
+            bubble.style.width = size;
+            bubble.style.height = size;
+            
+            bubble.style.left = Math.random() * 100 + 'vw';
+            
+            // اوپر جانے کی رفتار
+            const duration = Math.random() * 8 + 6 + 's';
+            bubble.style.animationDuration = duration;
+            
+            document.body.appendChild(bubble);
+            
+            // اسکرین سے باہر جانے پر بلبلے کو ڈیلیٹ کرنا
+            setTimeout(() => {
+                bubble.remove();
+            }, parseFloat(duration) * 1000);
+        }
+
+        // ہر 400 ملی سیکنڈ بعد نیا بلبلہ بنے گا
+        setInterval(createBubble, 400);
+    </script>
+</body>
+</html>
