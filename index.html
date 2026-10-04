@@ -10,7 +10,8 @@
             box-sizing: border-box;
         }
         body {
-            background: linear-gradient(135deg, #28e203, #294b57, #8f0321);
+            /* پریمیم ڈارک فیوچرسٹک اور آرمی تھیم لک */
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             overflow: hidden;
             height: 100vh;
             width: 100vw;
@@ -31,7 +32,7 @@
                 opacity: 0.8;
             }
             100% {
-                transform: translateY(-110vh) scale(1.5) rotate(360deg);
+                transform: translateY(-120vh) scale(1.5) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -44,23 +45,25 @@
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
             
-            // بلبلوں کا سائز اور پوزیشن خودکار سیٹ کرنے کے لیے
-            const size = Math.random() * 60 + 20 + 'px';
-            bubble.style.width = size;
-            bubble.style.height = size;
+            // بلبلوں کا سائز (محفوظ طریقہ)
+            const randomSize = Math.random() * 60 + 20;
+            bubble.style.width = `${randomSize}px`;
+            bubble.style.height = `${randomSize}px`;
             
-            bubble.style.left = Math.random() * 100 + 'vw';
+            // اسکرین پر پوزیشن
+            const randomLeft = Math.random() * 100;
+            bubble.style.left = `${randomLeft}vw`;
             
             // اوپر جانے کی رفتار
-            const duration = Math.random() * 8 + 6 + 's';
-            bubble.style.animationDuration = duration;
+            const randomDuration = Math.random() * 8 + 6;
+            bubble.style.animationDuration = `${randomDuration}s`;
             
             document.body.appendChild(bubble);
             
-            // اسکرین سے باہر جانے پر بلبلے کو ڈیلیٹ کرنا
+            // اسکرین سے باہر جانے پر میموری سے ڈیلیٹ کرنا
             setTimeout(() => {
                 bubble.remove();
-            }, parseFloat(duration) * 1000);
+            }, randomDuration * 1000);
         }
 
         // ہر 400 ملی سیکنڈ بعد نیا بلبلہ بنے گا
